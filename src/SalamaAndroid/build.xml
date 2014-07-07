@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SalamaAndroid" default="generateJar" basedir=".">
+	<!-- Configure directories -->
+	<!-- 
+	<property name="jdk.dir"         value="C:\Java\jdk1.6.0_19"/>
+	<property name="src.dir"         value="src"/>
+	-->
+	<property name="bin.dir"         value="bin"/>
+	<property name="bintemp.dir"     value="binTemp"/>
+	<property name="jar.name"        value="SalamaAndroid.jar"/>
+	
+	<!--
+	<target name="cleandir" description="clean the bin dir"> 
+		<delete dir="${bin.dir}"/> 
+	</target> 
+	<target name="compile" description="compile all source" depends="cleandir"> 
+		<mkdir dir="${bin.dir}"/>
+		<javac debug="off" srcdir="${src.dir}" destdir="${bin.dir}" -Xlint>
+		</javac>
+	</target>
+	-->
+
+	<target name="copySrc">
+		<copy todir="${bintemp.dir}" overwrite="true" verbose="false" >
+			<fileset dir="srcDataCore" ></fileset>
+			<fileset dir="srcDataService" ></fileset>
+			<fileset dir="srcSalamaDeveloper" ></fileset>
+			<fileset dir="srcSupportUtils" ></fileset>
+			<fileset dir="srcUtils" ></fileset>
+			<fileset dir="srcWebCore" ></fileset>
+			<fileset dir="srcWebViewUtils" ></fileset>
+		</copy>
+	</target>
+
+		<target name="createBinTmp">
+		<mkdir dir="${bintemp.dir}"/>
+	</target>
+	
+	<target name="copyClass">
+		<copy todir="${bintemp.dir}" overwrite="true" verbose="false" >
+			<fileset dir="${bin.dir}" >
+			</fileset>
+		</copy>
+	</target>
+		
+	<target name="deleteSVN" >
+		<delete verbose="true">
+			<fileset dir="${bintemp.dir}">
+				<include name="**/.svn/" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="deleteJUnitClass" >
+		<delete verbose="true">
+			<fileset dir="${bintemp.dir}">
+				<include name="**/junittest/" />
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="deleteVssFile" >
+		<delete verbose="false" >
+			<fileset dir="${bintemp.dir}" >
+			    <include name="**/*.scc"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="generateJar" description="create jar" 
+		depends="createBinTmp,copySrc,copyClass,deleteJUnitClass,deleteVssFile,deleteSVN"> 
+		<jar jarfile="${jar.name}" basedir="${bintemp.dir}" />
+		<delete dir="${bintemp.dir}"></delete>
+	</target>
+	
+</project>
