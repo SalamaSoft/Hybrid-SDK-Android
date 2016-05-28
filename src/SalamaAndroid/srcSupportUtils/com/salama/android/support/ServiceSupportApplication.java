@@ -3,26 +3,23 @@ package com.salama.android.support;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.salama.android.developer.util.http.SalamaHttpClientUtil;
-import com.salama.android.util.SSLog;
-import com.salama.android.util.http.HttpClientUtil;
-
 import MetoXML.Util.ClassFinder;
 import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.util.TypedValue;
+
+import com.salama.android.util.SSLog;
+import com.salama.android.util.http.HttpClientUtil;
+
 import dalvik.system.DexFile;
 
 public class ServiceSupportApplication extends Application implements ClassFinder {
@@ -355,7 +352,7 @@ public class ServiceSupportApplication extends Application implements ClassFinde
 					+ "salama" + ";";
  
 			HttpClientUtil.setUserAgent(userAgent);
-			SalamaHttpClientUtil.setUserAgent(userAgent);
+			//SalamaHttpClientUtil.setUserAgent(userAgent);
 			
 			SSLog.d("ServiceSupportApplication", "setUserAgent:" + userAgent);
 			

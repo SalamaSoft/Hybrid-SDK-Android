@@ -7,13 +7,12 @@
 	<classpathentry kind="src" path="srcDataCore"/>
 	<classpathentry kind="src" path="srcWebCore"/>
 	<classpathentry kind="src" path="srcWebViewUtils"/>
-	<classpathentry kind="lib" path="lib/apache-mime4j-0.6.jar"/>
-	<classpathentry kind="lib" path="lib/httpmime-4.0.jar"/>
 	<classpathentry kind="lib" path="lib/android.jar"/>
 	<classpathentry kind="lib" path="lib/MetoXML.jar"/>
 	<classpathentry kind="lib" path="lib/CollectionCommon.jar"/>
 	<classpathentry kind="lib" path="lib/base64codec.jar"/>
 	<classpathentry kind="lib" path="lib/android-support-v4.jar"/>
 	<classpathentry kind="lib" path="lib/annotations.jar"/>
+	<classpathentry kind="lib" path="lib/httpmime-4.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

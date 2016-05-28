@@ -158,13 +158,13 @@ public class CommonWebViewController extends BaseWebViewController {
 	}
 	
 	public CommonWebViewController() {
-		super();
-		
-		_titleBarSetting.setHidden(_defaultTitleBarHidden);
+		this(null);
 	}
 	
 	public CommonWebViewController(String viewServiceClassName) {
 		super(viewServiceClassName);
+		
+		_titleBarSetting.setHidden(_defaultTitleBarHidden);
 	}
 	
 	
@@ -482,10 +482,6 @@ public class CommonWebViewController extends BaseWebViewController {
 	 * @param pageName 页面View
 	 */
 	public void pushPage(final String pageName) {
-		if(isCreateLocalPageTwiceInvoked(pageName)) {
-			return;
-		}
-
 		getActivity().runOnUiThread(new Runnable() {
 			
 			@Override
@@ -608,6 +604,7 @@ public class CommonWebViewController extends BaseWebViewController {
 		boolean isTwiceInvoked = false;
 		if(lastTime != null
 				&& (currentTime.longValue() - lastTime.longValue()) <= CREATE_PAGE_LIMIT_INTERVAL_MS) {
+			SSLog.d(LOG_TAG, "isCreateLocalPageTwiceInvoked() true");
 			isTwiceInvoked = true;
 		}
 		

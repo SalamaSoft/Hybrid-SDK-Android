@@ -151,6 +151,11 @@ public class LocalWebViewFragment extends BaseViewController implements WebVaria
 	 * @param thisViewServiceClassName
 	 */
 	public void setThisViewServiceClassName(String thisViewServiceClassName) {
+		if(thisViewServiceClassName == null 
+				|| thisViewServiceClassName.length() == 0) {
+			return;
+		}
+		
 		if(_thisViewService != null) {
 			return;
 		}
