@@ -19,10 +19,10 @@ import com.salama.android.dataservice.SalamaDataService;
 import com.salama.android.dataservice.SalamaDataServiceConfig;
 import com.salama.android.dataservice.WebService;
 import com.salama.android.developer.cloud.SalamaCloudService;
-import com.salama.android.developer.natives.SalamaNativeService;
 import com.salama.android.developer.user.SalamaUserService;
 import com.salama.android.developer.util.SalamaWebService;
 import com.salama.android.developer.util.http.SalamaHttpClientUtil;
+import com.salama.android.jsservice.base.natives.SalamaNativeService;
 import com.salama.android.support.ServiceSupportApplication;
 import com.salama.android.support.ServiceSupportUtil;
 import com.salama.android.util.HexUtil;
@@ -74,6 +74,7 @@ public class SalamaAppService {
 	//private String _systemLanguagePrefix = null;
 	private String _textFileName = null;
 	
+	private SalamaNativeService _nativeService = null;
 	private WebService _webService = null;
 	private boolean _notUseEasyAppService = false;
 	private SalamaDataServiceConfig _config = null;
@@ -112,7 +113,7 @@ public class SalamaAppService {
 
 	private boolean checkWebPackageExists(String webPackageName) {
 		int htmlId = ServiceSupportApplication.singleton().getResources().getIdentifier(
-				"html", "raw", ServiceSupportApplication.singleton().getPackageName());
+				webPackageName, "raw", ServiceSupportApplication.singleton().getPackageName());
 		
 		return htmlId != 0;
 	}
@@ -169,7 +170,7 @@ public class SalamaAppService {
 	}
 	
 	public SalamaNativeService getNativeService() {
-		return SalamaNativeService.singleton();
+		return _nativeService;
 	}
 	
 	public SalamaCloudService getCloudService() {
@@ -463,6 +464,8 @@ public class SalamaAppService {
 		}
 		
 		_dataService = new SalamaDataService(_config);
+		
+		_nativeService = new SalamaNativeService(_dataService);
 	}
 	
 	private void initWebService() {

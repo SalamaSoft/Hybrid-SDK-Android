@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SalamaAndroid" default="generateJar" basedir=".">
+<project name="SalamaAndroidDeveloper" default="generateJar" basedir=".">
 	<!-- Configure directories -->
 	<!-- 
 	<property name="jdk.dir"         value="C:\Java\jdk1.6.0_19"/>
@@ -7,7 +7,7 @@
 	-->
 	<property name="bin.dir"         value="bin"/>
 	<property name="bintemp.dir"     value="binTemp"/>
-	<property name="jar.name"        value="SalamaAndroid.jar"/>
+	<property name="jar.name"        value="SalamaAndroidDeveloper.jar"/>
 	
 	<!--
 	<target name="cleandir" description="clean the bin dir"> 
@@ -29,6 +29,9 @@
 			<fileset dir="srcUtils" ></fileset>
 			<fileset dir="srcWebCore" ></fileset>
 			<fileset dir="srcWebViewUtils" ></fileset>
+			<fileset dir="srcOpenUDID" ></fileset>
+			<fileset dir="srcSalamaBaseJSService" ></fileset>
+			<fileset dir="srcSalamaDeveloper" ></fileset>
 		</copy>
 	</target>
 

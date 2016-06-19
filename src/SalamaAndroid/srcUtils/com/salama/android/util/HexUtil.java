@@ -16,21 +16,14 @@ public class HexUtil {
 		
 		return hexStr.toString();
 	}
-	
 	/**
-	 * byte数组转16进制字符串
-	 * @param val byte数组
 	 * @return 16进制字符串
-	 */
-	public static String toHexString(byte[] val) {
-		return toHexString(val, 0, val.length);
 	}
 
 	/**
 	 * 数值转16进制字符串
 	 * @param val 数值
 	 * @return 16进制字符串
-	 */
 	public static String toHexString(long val) {
 		StringBuilder hexStr = new StringBuilder(Long.toHexString(val));
 

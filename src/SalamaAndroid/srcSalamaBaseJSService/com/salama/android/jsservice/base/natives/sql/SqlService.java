@@ -1,4 +1,4 @@
-package com.salama.android.developer.natives.sql;
+package com.salama.android.jsservice.base.natives.sql;
 
 import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,24 +12,14 @@ import com.salama.android.datacore.DBDataUtil;
 import com.salama.android.datacore.SqliteUtil;
 import com.salama.android.datacore.SqliteUtilException;
 import com.salama.android.datacore.TableDesc;
-import com.salama.android.developer.SalamaAppService;
-import com.salama.android.util.SSLog;
+import com.salama.android.dataservice.SalamaDataService;
 
 public class SqlService {
-	private static SqlService _singleton = null;
-	
+	private final SalamaDataService _dataService;
 	private ConcurrentHashMap<String, String> _colTypeMapping = new ConcurrentHashMap<String, String>();
 
-	public static SqlService singleton() {
-		if(_singleton == null) {
-			_singleton = new SqlService();
-		}
-		
-		return _singleton;
-	}
-	
-	private SqlService() {
-		
+	public SqlService(SalamaDataService dataService) {
+		_dataService = dataService;
 	}
 	
 	/**
@@ -39,7 +29,7 @@ public class SqlService {
 	public int isTableExists(String tableName) {
 		DBDataUtil dbDataUtil = null;
 		try {
-			dbDataUtil = SalamaAppService.singleton().getDataService().getDbManager().createNewDBDataUtil();
+			dbDataUtil = _dataService.getDbManager().createNewDBDataUtil();
 			
 			return dbDataUtil.isTableExists(tableName)?1:0;
 		} catch (SqliteUtilException e) {
@@ -61,7 +51,7 @@ public class SqlService {
 	public String createTable(TableDesc tableDesc) {
 		DBDataUtil dbDataUtil = null;
 		try {
-			dbDataUtil = SalamaAppService.singleton().getDataService().getDbManager().createNewDBDataUtil();
+			dbDataUtil = _dataService.getDbManager().createNewDBDataUtil();
 			
 			if(!dbDataUtil.isTableExists(tableDesc.getTableName())) {
 				dbDataUtil.createTable(tableDesc);
@@ -87,7 +77,7 @@ public class SqlService {
 	public String dropTable(String tableName) {
 		DBDataUtil dbDataUtil = null;
 		try {
-			dbDataUtil = SalamaAppService.singleton().getDataService().getDbManager().createNewDBDataUtil();
+			dbDataUtil = _dataService.getDbManager().createNewDBDataUtil();
 			
 			dbDataUtil.dropTable(tableName);
 			
@@ -111,7 +101,7 @@ public class SqlService {
 	public String executeQuery(String sql, String dataNodeName) {
 		DBDataUtil dbDataUtil = null;
 		try {
-			dbDataUtil = SalamaAppService.singleton().getDataService().getDbManager().createNewDBDataUtil();
+			dbDataUtil = _dataService.getDbManager().createNewDBDataUtil();
 			
 			return dbDataUtil.getSqliteUtil().findDataListXml(sql, dataNodeName);
 		} catch (SqliteUtilException e) {
@@ -133,7 +123,7 @@ public class SqlService {
 	public int executeUpdate(String sql) {
 		DBDataUtil dbDataUtil = null;
 		try {
-			dbDataUtil = SalamaAppService.singleton().getDataService().getDbManager().createNewDBDataUtil();
+			dbDataUtil = _dataService.getDbManager().createNewDBDataUtil();
 			
 			return dbDataUtil.getSqliteUtil().executeUpdate(sql);
 		} catch (SqliteUtilException e) {
@@ -214,7 +204,7 @@ public class SqlService {
 	    //execute sql ------------------
 		DBDataUtil dbDataUtil = null;
 		try {
-			dbDataUtil = SalamaAppService.singleton().getDataService().getDbManager().createNewDBDataUtil();
+			dbDataUtil = _dataService.getDbManager().createNewDBDataUtil();
 			
 			int success = dbDataUtil.getSqliteUtil().executeUpdate(sql.toString());
 			if(success != 0) {
@@ -263,7 +253,7 @@ public class SqlService {
 		String createTblSql = null;
 		
 		try {
-			dbDataUtil = SalamaAppService.singleton().getDataService().getDbManager().createNewDBDataUtil();
+			dbDataUtil = _dataService.getDbManager().createNewDBDataUtil();
 			
 			createTblSql = dbDataUtil.getSqliteUtil().executeStringScalar(
 					"select sql from sqlite_master where lower(tbl_name) = lower('".concat(table).concat("')"));

@@ -7,6 +7,9 @@
 	<classpathentry kind="src" path="srcDataCore"/>
 	<classpathentry kind="src" path="srcWebCore"/>
 	<classpathentry kind="src" path="srcWebViewUtils"/>
+	<classpathentry kind="src" path="srcSalamaBaseApp"/>
+	<classpathentry kind="src" path="srcOpenUDID"/>
+	<classpathentry kind="src" path="srcSalamaBaseJSService"/>
 	<classpathentry kind="lib" path="lib/android.jar"/>
 	<classpathentry kind="lib" path="lib/MetoXML.jar"/>
 	<classpathentry kind="lib" path="lib/CollectionCommon.jar"/>

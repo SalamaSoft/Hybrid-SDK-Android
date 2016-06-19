@@ -149,11 +149,7 @@ public class WebController {
 	 * @throws IOException
 	 */
 	public WebController(String webPackageName, InputStream htmlPackageStream) throws IOException {
-		//default base dir:files
-		_webBaseDirPath = ServiceSupportApplication.singleton().getFilesDir().getAbsolutePath();
-		_webPackageName = webPackageName;
-		
-		initObjs(htmlPackageStream);
+		this(webPackageName, htmlPackageStream, new File(ServiceSupportApplication.singleton().getFilesDir().getAbsolutePath()));
 	}
 	
 	/**

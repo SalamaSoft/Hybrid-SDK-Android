@@ -1,4 +1,4 @@
-package com.salama.android.developer.natives.file;
+package com.salama.android.jsservice.base.natives.file;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,21 +19,7 @@ import android.util.Log;
 import com.salama.android.webcore.WebManager;
 
 public class FileService {
-	private static FileService _singleton = null;
 	private final int TEMP_BUFFER_LEN = 1024;
-	
-	
-	public static FileService singleton() {
-		if(_singleton == null) {
-			_singleton = new FileService();
-		}
-		
-		return _singleton;
-	}
-	
-	private FileService() {
-		
-	}
 
 	/**
 	 * 取得实际物理存储上的路径
