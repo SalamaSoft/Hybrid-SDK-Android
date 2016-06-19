@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.salama.android.support.ServiceSupportApplication;
+import com.salama.android.util.SSLog;
 
 @SuppressLint("ValidFragment")
 public class LocalWebViewFragment extends BaseViewController implements WebVariableStack {
@@ -202,6 +203,10 @@ public class LocalWebViewFragment extends BaseViewController implements WebVaria
 		super();
 		
 		setThisViewServiceClassName(viewServiceClassName);
+	}
+	
+	public void log(String msg) {
+		SSLog.d(_localPage, msg);
 	}
 	
 	/**
