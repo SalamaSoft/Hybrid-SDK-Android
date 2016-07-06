@@ -192,6 +192,7 @@ public class LocalWebViewFragment extends BaseViewController implements WebVaria
 	 * @param thisViewService
 	 */
 	public void setThisViewService(ViewService thisViewService) {
+		_thisViewService.setThisView(this);
 		_thisViewService = thisViewService;
 	}
 	
